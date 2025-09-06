@@ -1,14 +1,18 @@
 ## Atividade Curricular em Cultura e Extensão (MAC0214)
 
-### Tarefas Feitas na Organização da XV Semana da Computação do IME — USP
+### Tarefas Realizadas na Organização da XV Semana da Computação do IME — USP
 
 #### Por Tiago Gomes Dourado de Oliveira
 
-\
-[Atividades de agosto](por-mes/agosto.md)
+<br>
 
-[Atividades de setembro](por-mes/setembro.md)
+[Atividades de Agosto](por-mes/agosto.md)
 
-[Atividades de outubro](por-mes/outubro.md)
+[Atividades de Setembro](por-mes/setembro.md)
 
-[Atividades de novembro](por-mes/novembro.md)
+[Atividades de Outubro](por-mes/outubro.md)
+
+[Atividades de Novembro](por-mes/novembro.md)
+
+<br> <br> <br> <br> <br>
+<sup>Atividades de natureza particular, como conversas de e-mail com patrocinadores, serão evidenciadas somente no relatório final.</sup>
