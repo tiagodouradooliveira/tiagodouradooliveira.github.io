@@ -1,6 +1,6 @@
 ## Atividades de Agosto
 
-### Atividades pontuais
+### Atividades pontuais de curta duração
 
 - Dia 7
   - Criei e preenchi a planilha de informações dos integrantes da SymComp (grupo da Semana da Computação - SC)

@@ -1,6 +1,6 @@
 ## Atividades de Setembro
 
-### Atividades pontuais
+### Atividades pontuais de curta duração
 
 - Dia 5
   - Preenchi as presenças referentes à reunião deste dia
