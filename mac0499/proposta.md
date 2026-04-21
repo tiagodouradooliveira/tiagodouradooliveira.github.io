@@ -16,7 +16,7 @@
 
 ---
 
-### Background/fundamentos
+### Background
 
 #### O levantamento S-PLUS utiliza um sistema fotométrico de 12 bandas para caracterizar morfologias e redshifts. Em experimentos de iniciação científica, utilizou-se a arquitetura YOLOv3 da região Stripe 82. Os resultados indicaram um mAP50 com desempenho crítico para a classe de quasares em comparação a estrelas e galáxias. Identificou-se que o pré-processamento atual e a anotação automática baseada em restrições a partir dos dados tabulares é insuficiente, pois pode introduzir viés e ruído. Portanto, o problema persiste na sensibilidade do modelo à consistência dos rótulos e à natureza pontual de estrelas e quasares em relação ao fundo.
 
