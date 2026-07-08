@@ -96,10 +96,13 @@ Maintainer Alex Deucher said that we could just assign the earlier versions’ `
 
 Implemented the simple refactoring suggested by Alex Deucher:
 - Macro aliases in the newer files removed, e.g.,
+
 ```cpp
 #define jpeg_v5_3_0_process_interrupt jpeg_v5_0_0_process_interrupt;
 ```
-- Direct function assignment implemented, e.g,
+
+- Direct function assignment implemented, e.g.
+
 ```cpp
 --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c
