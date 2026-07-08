@@ -37,7 +37,7 @@ Replaced `config.txt`'s plain-text prefix format with `config.json`. `save_curre
 
 **Commit 2: `refactor(preprocessor): address maintainer review feedback`**
 
-- Introduced `PreprocessRunParams` struct with `to_json`/`from_json` and adapted the rest of the code, replacing string-keyed json and positional vector access. The maitainer requested implementing a struct to make the data more explicit and type-safe.
+- Introduced `PreprocessRunParams` struct with `to_json`/`from_json` and adapted the rest of the code, replacing string-keyed json and positional vector access. The maintainer requested implementing a struct to make the data more explicit and type-safe.
 - Restored Doxygen `///<` comments. The maintainer requested to keep them for Doxygen documentation. 
 - Reused `Utils::write_file` instead of manual `ofstream`/`create_directories`. The maintainer requested the change because the `Utils` function performs additional checks to ensure the file can be safely opened before writing.
 - From the maintainer suggestion, rewrote the JSON data assignment to be line-separated, so that formatting keeps consistency and `git blame` history is uncluttered:
