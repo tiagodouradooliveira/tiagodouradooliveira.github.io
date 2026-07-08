@@ -28,7 +28,9 @@ We interacted with the maintainer Guilherme Ivo.
 
 **Commit 1: `refactor(preprocessor): use JSON for preprocess cache metadata`**
 
-Replaced `config.txt`'s plain-text prefix format with `config.json`. `save_current_run_params`/`read_current_run_params` switched from string concatenation and manual line parsing to `nlohmann::json`. `test.cpp` skip list file extension renamed to match.
+- Replaced `config.txt`'s plain-text prefix format with `config.json`.
+- `save_current_run_params`/`read_current_run_params` switched from string concatenation and manual line parsing to `nlohmann::json`.
+- `test.cpp` skip list file extension renamed to match JSON.
 
 **Conflict 1 (merge upstream main)**
 
@@ -50,11 +52,13 @@ json data = {
 
 **Conflict 2 (merge upstream main again)**
 
-`function.cpp`: upstream converted `relative_path` to `fs::path` typing on the same line we'd already changed to `params.path`. Kept our struct field access, layered upstream's `fs::path`/`.string()` typing on top, since the two changes were complementary.
+- `function.cpp`: upstream converted `relative_path` to `fs::path` typing on the same line we'd already changed to `params.path`. Kept our struct field access, layered upstream's `fs::path`/`.string()` typing on top, since the two changes were complementary.
 
 **Commit 3: `refactor(preprocessor): use fs::path for run params path field`**
 
-Changed `PreprocessRunParams::path` from `std::string` to `fs::path`, aligning with upstream's path-safety convention. Removed the now-redundant `fs::path{params.path}` wraps at both call sites. `to_json` updated to call `.string()` on write.
+- Changed `PreprocessRunParams::path` from `std::string` to `fs::path`, aligning with upstream's path-safety convention.
+- Removed the now-redundant `fs::path{params.path}` wraps at both call sites.
+- `to_json` updated to call `.string()` on write.
 
 ### Merge of the PR and final response from the maintainer Guilherme Ivo (03/07):
 > Thanks for the PR.
