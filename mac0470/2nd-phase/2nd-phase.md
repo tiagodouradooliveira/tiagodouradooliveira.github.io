@@ -28,7 +28,7 @@ We interacted with the maintainer Guilherme Ivo.
 
 **Commit 1: `refactor(preprocessor): use JSON for preprocess cache metadata`**
 
-Replaced `config.txt`'s plain-text prefix format with `config.json`. `save_current_run_params`/`read_current_run_params` switched from string concatenation and manual line parsing to `nlohmann::json`. `test.cpp` skip list and expected fixture renamed to match.
+Replaced `config.txt`'s plain-text prefix format with `config.json`. `save_current_run_params`/`read_current_run_params` switched from string concatenation and manual line parsing to `nlohmann::json`. `test.cpp` skip list file extension renamed to match.
 
 **Conflict 1 (merge upstream main)**
 
