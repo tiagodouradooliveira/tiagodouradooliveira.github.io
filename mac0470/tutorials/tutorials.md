@@ -1,0 +1,33 @@
+#### Logs about the tutorials followed in the beginning of the course
+
+##### Tutorial 1 - 25/02:
+
+I was able to set up a virtual machine with QEMU and libvirt, along with the configuration of the SSH connection. The only small hindrance was the amount of time needed to download packages and images. I needed some time beyound the classroom to set up the virtual machine.
+
+##### Tutorial 2 - 04/03:
+
+I was able to build a custom Linux kernel. One of the hindrances was about time again; the first build time took about 40 minutes in my machine. However, further builds took a lot less time. The other hindrance was the startup and SSH connection of the VM. The commands in this and the previous tutorial to start and connect to the VM did not work well on the day. However, I did manage to make it work again by combining other complementary commands from the previous tutorial.
+
+##### Tutorial 3 - 11/03:
+
+I was able to add a module to the Linux codebase and see it running. I had the issue about the startup and SSH connection again on that day, but I was able to correct it by adding even further commands to the startup process. It was a less direct procedure, but now I do more verifications about the state of the VM and the SSH connection in order to properly start and connect to it.
+
+##### Tutorial 4 - 18/03:
+
+I once again had the issue. David (the course's teaching assistant) helped me to fix the issue in the lecture. However, back at home, the issue persisted for some reason, especially in relation to the IIO Image built by kw. At the end, I figured it would be better to resort to the nuclear option by deleting almost everything related to this, and then follow the tutorials again. It is now working correctly (I hope that it stays that way), and I was also able to work with this tutorial's character device driver.
+
+##### Tutorial 5 - 25/03:
+
+I followed the tutorial with no issues (I just read the tutorial, which was what David suggested to do). I already did some of the steps before because of other project-centric courses.
+
+##### Tutorial 6 - 25/03:
+
+I was able to send a test email to the course's email list with no problems.
+
+##### Tutorial 7 - 01/04:
+
+It was an interesting read about the anatomy of an IIO driver. I think I got a lot of value from it.
+
+##### Tutorial 8 - 01/04:
+
+Everything went alright. I swapped some commands by their kw counterparts when following the steps.

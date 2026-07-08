@@ -1,14 +1,4 @@
-### Free and Open Source Software Development (MAC0470) - 2026
-
-##### Tiago Gomes Dourado de Oliveira
-
-<br>
-
-[Logs about the tutorials followed in the beginning of the course](tutorials/tutorials.md)
-
-<br>
-
-[**First phase of the course:** points about the AMD DRM work](1st-phase/1st-phase.md)
+#### First phase of the course: points about the AMD DRM work
 
 ##### 08/04:
 
@@ -16,9 +6,9 @@ I formed a duo with Luiz Fernandes and we are working on two of the suggested is
 
 ##### 15/04 until the submission of the patch:
 
-We basically deduplicated the functions by removing the `static` keyword from the older versions' ones, declaring them in the older `.h` files, removing the newer functions, and creating aliases so that the defined older functions are executed in the newer versions too. Below are implementation details of the deduplication of `v5_0_0` and `v5_3_0` (very similar to the other deduplication) through `diff`:
+We deduplicated the functions by introducing a new function `jpeg_v5_process_interrupt` that is called by both `jpeg_v5_0_0_process_interrupt` and `jpeg_v5_3_0_process_interrupt`; we also added a new function `jpeg_v2_process_interrupt` that is called by both `jpeg_v2_0_process_interrupt` and `jpeg_v3_0_process_interrupt`. The deduplication and export of the new functions were possible thanks to the reuse of macro aliases. Below are implementation details of the deduplication of `v5_0_0` and `v5_3_0` (very similar to the other deduplication) through `diff`:
 
-```
+```cpp
  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c |  2 +-
  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.h |  4 ++++
  drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c | 22 +++-------------------
@@ -96,9 +86,52 @@ index 1821dced9..92aaf5dea 100644
 
 ##### First patch (21/04):
 
-We submitted our first patch series to the AMD DRM mailing list. The successful run of the course's CI pipeline (ran before sending to the maintainers) is available [here](https://gitlab.freedesktop.org/marcelomspessoto/dsl-linux/-/pipelines/1650688).
+We submitted our [first patch series changes](https://lists.freedesktop.org/archives/amd-gfx/2026-April/143292.html) to the AMD DRM mailing list. The successful run of the course's CI pipeline (ran before sending to the maintainers) is available [here](https://gitlab.freedesktop.org/marcelomspessoto/dsl-linux/-/pipelines/1650688).
 
 ##### First response (16/06):
 
-Maintainer Alex said that we could just assign the earlier versions' `_process_interrupt` functions directly in the newer ones'
-`_irq_funcs`. We will follow his suggestion and send new patches for review.
+Maintainer Alex Deucher said that we could just assign the earlier versions’ ```_process_interrupt``` functions directly in the newer ones’ ```_irq_funcs```. We will follow his suggestion and send new patches for review.
+
+##### Second patch (26/06):
+
+Implemented the simple refactoring suggested by Alex Deucher:
+- Macro aliases in the newer files removed, e.g.,
+```cpp
+#define jpeg_v5_3_0_process_interrupt jpeg_v5_0_0_process_interrupt;
+```
+- Direct function assignment implemented, e.g,
+```cpp
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c
+
+ static const struct amdgpu_irq_src_funcs jpeg_v5_3_0_irq_funcs = {
+        .set = jpeg_v5_3_0_set_interrupt_state,
+-       .process = jpeg_v5_3_0_process_interrupt,
++       .process = jpeg_v5_0_0_process_interrupt,
+ };
+```
+
+##### Discussion and application of the second patch, chronologically (26/06 - 02/07):
+[Response from Christian König:](https://lists.freedesktop.org/archives/amd-gfx/2026-June/147671.html)
+> Usually we intentionally don't do any cross IP version reuse, that has cause tons of problems in the past.
+> 
+> @Leo any particular reason why we don't have a separate SRCID file for VCN3?
+> 
+> My educated guess is that nothing changed compared to VCN2 and nobody cared to re-generate the file from the HW definition.
+
+[Response from Alex Deucher:](https://lists.freedesktop.org/archives/amd-gfx/2026-June/147706.html)
+> I think it's the same so no need for a separate one.  There are a
+number of existing places where VCN or jpeg use one function
+implementation across multiple generations.
+
+[Our response:](https://lists.freedesktop.org/archives/amd-gfx/2026-July/147917.html)
+> Thanks for the feedback. Given what both of you pointed out, what do
+you suggest that we can do?
+
+[Resolution and application of the patch series by Alex Deucher:](https://lists.freedesktop.org/archives/amd-gfx/2026-July/147907.html)
+> I've applied the series.  Thanks.
+
+[Relevant point made by Christian König after the application of the patch series:](https://lists.freedesktop.org/archives/amd-gfx/2026-July/147909.html)
+> I think we should add a comment to functions which are used for more than one IP generation.
+> 
+> Just to make sure that we don't accidentially add modifications which are specific to one generation.
